@@ -48,8 +48,7 @@ All hardware and software dependencies are pre-configured on the provided server
 - CMake version ≥ 3.16 (CMake 3.16.3 on the provided server)
 - Any C++ compiler supporting CXX14 (g++ 11.4.0 on the provided server)
 
-We provide a script for automatically installing the software dependencies except the Linux kernel.
-If you want to reproduce the experiments on a custom machine but are unsure whether all dependencies are satisfied, you can run:
+To reproduce the experiments on a custom machine, if you are unsure whether all software dependencies (except the Linux kernel version) are satisfied, run the provided script to install them automatically:
 ```
 ./prerequisite.sh
 ```
