@@ -5,9 +5,8 @@ ROOT_DIR=$(pwd)
 
 # Reproduce the results in LightDSA
 cd LightDSA/AE
-./env_init.sh
-# 1 3 4 5 6 7 
-for i in 8 9 11 12
+./env_init.sh 
+for i in 1 3 4 5 6 7 8 9 11 12
 do
   (cd ./figure$i && ./runner.sh)
   cp ./figure$i/figure$i*.pdf "$ROOT_DIR"
