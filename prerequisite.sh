@@ -2,6 +2,9 @@
 # This script installs all the prerequisites for running the experiments in this repository.
 set -e 
 
+# Install g++
+sudo apt install g++ -y
+
 # Install idxd-config
 sudo apt install build-essential -y
 sudo apt install autoconf automake autotools-dev libtool pkgconf asciidoc xmlto -y

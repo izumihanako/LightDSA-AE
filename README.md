@@ -48,25 +48,37 @@ All hardware and software dependencies are pre-configured on the provided server
 - CMake version ≥ 3.16 (CMake 3.16.3 on the provided server)
 - Any C++ compiler supporting CXX14 (g++ 11.4.0 on the provided server)
 
+We provide a script for automatically installing the software dependencies except the Linux kernel.
+If you want to reproduce the experiments on a custom machine but are unsure whether all dependencies are satisfied, you can run:
+```
+./prerequisite.sh
+```
+
 
 
 ## Running Experiments
 
 There are two sub-directories: `LightDSA` and `dsa_redis`. The `LightDSA` directory contains all experiments except the final one (Figure 13). The `dsa_redis` directory contains experiment for Figure13.
 
-### For Experiments in the `LightDSA` Directory:
-
-First, run the scripts that build the LightDSA project (assuming you're in the LightDSA/AE directory):
-
-```bash
-./env_init.sh
+We provide a one-click script to reproduce all experiments and copy the generated figures to the root directory of this project. Just run:
+```
+./reproduce.sh
 ```
 
-Then, for each experiment, enter the corresponding directory and run the script. All scripts are named `runner.sh`. For example, to reproduce the experiment for Figure 1 (assuming you're in the LightDSA/AE directory):
+If you wish to run a specific experiment individually, please follow the instructions below.
+
+### For Experiments in the `LightDSA` Directory:
+
+First, build the LightDSA project (assuming you are in the LightDSA directory):
 
 ```bash
-cd figure1
-./runner.sh
+./build.sh
+```
+
+Then, for each experiment, enter the corresponding directory and run the script. All scripts are named `runner.sh`. For example, to reproduce the experiment for Figure 1 (assuming you're in the LightDSA directory):
+
+```bash
+cd AE/figure1 && ./runner.sh
 ```
 
 After the script runs, you will see the message `Done!`, and you can find the generated `figure1.pdf` and `figure1.png` files in the directory.
@@ -76,12 +88,11 @@ After the script runs, you will see the message `Done!`, and you can find the ge
 
 This experiment requires the Arxiv-Summarization dataset from Hugging Face and involves importing the data into Redis to create `.rdb` files before testing. Thus, the experiment consists of two scripts: one for downloading, converting, and importing the data into Redis, and another for running the experiment.
 
-To run the experiment (assuming you're in the `dsa_redis/AE` directory):
+To run the experiment (assuming you're in the `dsa_redis` directory):
 
 ```bash
-cd figure13
-./env_init.sh # prepare the dataset
-./runner.sh   # run the experiment
+cd AE && ./env_init.sh      # prepare the dataset
+cd figure13 && ./runner.sh  # run the experiment
 ```
 
 Once the first script completes, it will output `Experiment environment initialized!`.
