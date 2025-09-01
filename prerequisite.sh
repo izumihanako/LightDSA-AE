@@ -15,7 +15,15 @@ cd idxd-config
 ./configure CFLAGS='-g -O2' --prefix=/usr --sysconfdir=/etc \
     --libdir=/usr/lib64 --enable-test=yes --enable-asciidoctor
 sudo make
-# sudo make check # This sometimes fails, some bugs exist in the check scripts.
+# This step is sometimes unreliable due to bugs in the check scripts.
+# In addition, running it partially may write incorrect configurations  
+# to the DSA device, causing it to malfunction (a system reboot can  
+# resolve the issue).  
+# Therefore, we skipped this step by default. You may try it at your  
+# own discretion if needed. 
+# ------------------------
+# sudo make check 
+# ------------------------
 sudo make install
 
 # Install python libraries
