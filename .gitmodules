@@ -1,0 +1,6 @@
+[submodule "dsa_redis"]
+	path = dsa_redis
+	url = https://github.com/izumihanako/LightDSA-redis
+[submodule "LightDSA"]
+	path = LightDSA
+	url = https://github.com/izumihanako/LightDSA
