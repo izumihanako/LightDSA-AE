@@ -9,7 +9,7 @@ For detailed information about LightDSA, refer to the [README.md](https://github
 
 ### Which experiments can I reproduce?
 
-All the experiments shown in the figures of the paper can be reproduced:
+All the experiments in the paper can be reproduced:
 
 - Reproduction scripts for Figures 1, 3–9, 11, and 12 are located in the `LightDSA/AE/figure*` directory.
 - Reproduction script for Figure 13 is located in the `dsa_redis/AE/figure13` directory.
@@ -24,6 +24,8 @@ We have optimized the experiment times to balance accuracy and duration. In favo
 DSA performance is inherently unstable. when the bottleneck of a DSA operation is not bandwidth (i.e., far from 30GB/s), performance is affected by multiple factors and typically fluctuates within a range.
 Some experiments therefore require multiple repetitions and result averaging to obtain representative data. To reduce artifact evaluation time, we have decreased the number of repetitions in the AE version code. While this may slightly reduce accuracy, the results are still sufficient to support the paper's conclusions. You can find the source code for all experiments in `LightDSA/expr/paper`. The variable named `REPEAT` in the code controls the number of repetitions.
 
+### Can I run multiple experiments simultaneously?
+We recommend running experiments one at a time to avoid resource contention and ensure accurate, reproducible results. Running multiple experiments in parallel can cause unpredictable results due to contention for DSA throughput and other shared resources. For best reproducibility, please run each experiment separately.
 
 
 ## Dependencies
