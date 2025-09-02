@@ -2,10 +2,7 @@
 
 This folder contains the code and scripts for all experiments presented in our paper ***LightDSA: Enabling Efficient DSA Through Hardware-Aware Transparent Optimization***, submitted for the AE of the EuroSys '26 spring cycle.
 
-Each experiment has a corresponding script (e.g., `LightDSA/AE/figure1/runner.sh`). These scripts cover the entire process, from compiling the project with specific configurations to running the experiment and generating the figures. After successfully running a script, the resulting figures will be saved in the corresponding directory (e.g., `LightDSA/AE/figure1/figure1.pdf`).
-
-For detailed explanations of each experiment, refer to `LightDSA/README.md` and `dsa_redis/README.md`.
-
+For detailed information about LightDSA, refer to the [README.md](https://github.com/izumihanako/LightDSA/blob/master/README.md) in LightDSA repository.
 
 
 ## Common Concerns Before Getting Started
