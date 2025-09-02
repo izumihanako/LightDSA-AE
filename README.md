@@ -16,6 +16,7 @@ All the experiments shown in the figures of the paper can be reproduced:
 
 - Reproduction scripts for Figures 1, 3–9, 11, and 12 are located in the `LightDSA/AE/figure*` directory.
 - Reproduction script for Figure 13 is located in the `dsa_redis/AE/figure13` directory.
+- Reproduction scripts for ATC structure exploration are located in the `LightDSA/AE/ATCexplore` directory.
 
 Note: Some numbered figures are not based on experiments and do not have corresponding scripts.
 
@@ -49,7 +50,7 @@ All hardware and software dependencies are pre-configured on the provided server
 - Any C++ compiler supporting CXX14 (g++ 11.4.0 on the provided server)
 
 To reproduce the experiments on a custom machine, if you are unsure whether all software dependencies (except the Linux kernel version) are satisfied, run the provided script to install them automatically:
-```
+```bash
 ./prerequisite.sh
 ```
 
@@ -59,12 +60,12 @@ To reproduce the experiments on a custom machine, if you are unsure whether all 
 
 There are two sub-directories: `LightDSA` and `dsa_redis`. The `LightDSA` directory contains all experiments except the final one (Figure 13). The `dsa_redis` directory contains experiment for Figure13.
 
-We provide a one-click script to reproduce all experiments and copy the generated figures to the root directory of this project. Just run:
-```
+We provide a one-click script to reproduce experiments and copy the generated figures to the root directory of this project. Just run:
+```bash
 ./reproduce.sh
 ```
 
-If you wish to run a specific experiment individually, please follow the instructions below.
+If you wish to run a specific experiment individually, or if you want to run the experiments of ATC structure exploration, please follow the instructions below.
 
 ### For Experiments in the `LightDSA` Directory:
 
@@ -98,3 +99,39 @@ Once the first script completes, it will output `Experiment environment initiali
 
 Once the second script completes, it will output `Done!`, and you'll find the generated `figure13.pdf` and `figure13.png` files in the directory.
 
+### For ATC Structure Exploration Experiments
+These experiments involve numerous trials and pattern analysis on the `perf` output. 
+The full procedure is described in Appendix A of the paper. 
+Since the experiments are not easy to visualize, we do not provide a script that goes through all steps. However, we do provide manually runnable scripts for Steps 1-5 to reproduce the experiments.
+
+
+First, set up the environment (assuming you are in the project root directory):
+```bash
+cd LightDSA/AE/ATCexplore && ./env_init.sh 
+```
+In `LightDSA/AE/ATCexplore`, you will find scripts named `stepX.sh` (X = 1, 2, 3, 4, 5) corresponding to Steps 1–5 in Appendix A. Running a script with no arguments prints its usage. For example:
+```bash
+./step3.sh
+# The output will be like:
+# Usage: usage -k <times> -p <pages>
+#   -k   Number of memmove submissions (k)
+#   -p   Size of each memmove, in pages of 4KB (p)
+# Use 2 descriptors with completion record located on different pages.
+# Perform the same memmove "k" times; each memmove is "p" 4K pages long.
+```
+
+#### An Example of Reproducing Step 3
+For example, to reproduce Step 3 with k=20 and p=5, run (assuming you are in the `ATCexplore` directory):
+```bash
+./step3.sh -k 20 -p 5
+```
+
+Inspect the last 6 lines of the output. The script extracts the `perf` metrics and prints the expected results. The experiment succeeds if they match. For the above execution command, the last 6 lines should be: 
+```
+Perf metrics:
+Translation requests  : 220 , (100.00%)
+Translation hits      : 0   , (100.00%)
+---------- Expected Output ----------
+Translation requests  : 220   (k+2kp)
+Translation hits      : 0
+```
