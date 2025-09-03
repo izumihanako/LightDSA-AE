@@ -4,6 +4,25 @@ This folder contains the code and scripts for all experiments presented in our p
 
 For detailed information about LightDSA, refer to the [README.md](https://github.com/izumihanako/LightDSA/blob/master/README.md) in LightDSA repository.
 
+## Must Read
+
+We recommend running experiments one at a time to avoid resource contention and ensure accurate, reproducible results. Running multiple experiments in parallel can cause unpredictable results due to contention for DSA throughput and other shared resources. For best reproducibility, please run each experiment separately.
+
+We provide a script named `check_if_running.sh` to check if there is any one else running the experiments:
+If not running, it will output:
+```bash
+./check_if_running.sh
+# ✓ No experiments from other users detected.
+```
+else it will output all the running process like:
+```bash
+./check_if_running.sh
+# ⚠ Detected experiments running:
+# USER       PID   ELAPSED CMD
+# usertes+   90368       3 /bin/bash ./reproduce.sh
+# usertes+   90370       3 /bin/bash ./reproduce.sh
+```
+
 
 ## Common Concerns Before Getting Started
 
@@ -23,10 +42,6 @@ We have optimized the experiment times to balance accuracy and duration. In favo
 
 DSA performance is inherently unstable. when the bottleneck of a DSA operation is not bandwidth (i.e., far from 30GB/s), performance is affected by multiple factors and typically fluctuates within a range.
 Some experiments therefore require multiple repetitions and result averaging to obtain representative data. To reduce artifact evaluation time, we have decreased the number of repetitions in the AE version code. While this may slightly reduce accuracy, the results are still sufficient to support the paper's conclusions. You can find the source code for all experiments in `LightDSA/expr/paper`. The variable named `REPEAT` in the code controls the number of repetitions.
-
-### Can I run multiple experiments simultaneously?
-We recommend running experiments one at a time to avoid resource contention and ensure accurate, reproducible results. Running multiple experiments in parallel can cause unpredictable results due to contention for DSA throughput and other shared resources. For best reproducibility, please run each experiment separately.
-
 
 ## Dependencies
 
