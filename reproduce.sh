@@ -16,5 +16,5 @@ done
 # Reproduce the results in dsa_redis
 cd ../../dsa_redis/AE
 ./env_init.sh
-( cd figure13 && ./runner.sh )
+( cd figure13 && sudo ./runner.sh )
 cp ./figure13/figure13.pdf "$ROOT_DIR"
