@@ -6,21 +6,25 @@ For detailed information about LightDSA, refer to the [README.md](https://github
 
 ## Must Read
 
-We recommend running experiments one at a time to avoid resource contention and ensure accurate, reproducible results. Running multiple experiments in parallel can cause unpredictable results due to contention for DSA throughput and other shared resources. For best reproducibility, please run each experiment separately.
+We recommend running experiments ***one at a time*** to avoid resource contention and ensure accurate, reproducible results. Running multiple experiments in parallel can cause unpredictable results due to contention for DSA throughput and other shared resources. For best reproducibility, please run each experiment separately.
 
-We provide a script named `check_if_running.sh` to check if there is any one else running the experiments:
-If not running, it will output:
+We provide a helper script, `check_if_running.sh`, to check whether anyone else is currently running the experiments.
+
+If no one is running:
 ```bash
 ./check_if_running.sh
 # ✓ No experiments from other users detected.
 ```
-else it will output all the running process like:
+Otherwise, it lists the matching processes, for example:
 ```bash
 ./check_if_running.sh
 # ⚠ Detected experiments running:
-# USER       PID   ELAPSED CMD
-# usertes+   90368       3 /bin/bash ./reproduce.sh
-# usertes+   90370       3 /bin/bash ./reproduce.sh
+# USER       PID     PPID  ELAPSED CMD
+# usertes+   96559   58407      37 bash ./reproduce.sh
+# usertes+   97476   96559      14 bash ./reproduce.sh
+# usertes+   97477   97476      14 /bin/zsh ./runner.sh
+
+# Please wait until these runs finish before starting new experiments.
 ```
 
 
