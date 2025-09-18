@@ -153,3 +153,18 @@ Translation hits      : 0   , (100.00%)
 Translation requests  : 220   (k+2kp)
 Translation hits      : 0
 ```
+
+#### About ATC Exploration
+In Section 3.1 of the paper, we introduce the ATC structure: it caches the most recent translations of `src`, `dest`, and completion record address. However, the exact structure of ATC is not publicly documented. Our conclusions are instead derived from extensive experiments in which we systematically ruled out all other possibilities.
+
+Thus, the ATC Exploration experiments constitute a minimal yet representative subset of our extensive evaluations, providing results sufficient to infer the ATC structure. In Appendix A, we describe the experiment setups, the observed patterns, and the conclusions they support.
+
+**Details about the "expected output"**
+
+The "expected output" is a calculated output based on our inferred ATC structure. The calculation formulas are included directly in the scripts, allowing users to see the corresponding formulas and results in the output without needing to refer back to the paper.
+
+For instance, in Step 1, when $k=30$, a total of 30 no-ops are submitted to the DSA. Since no-op descriptors have neither `src` nor `dest`, only the completion record addresses are translated. Therefore, the number of Translation requests is expected to be $30$. The structure of no-op descriptor can be found in DSA specification [31] Page 98.
+
+**Do the parameter examples have any special significance?**
+
+No, the parameter examples are arbitrary values. The key takeaway is the pattern: no matter how the parameters change, the final result should align with our inferred ATC structure.
