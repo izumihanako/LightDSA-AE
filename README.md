@@ -34,8 +34,8 @@ Otherwise, it lists the matching processes, for example:
 
 All the experiments in the paper can be reproduced:
 
-- Reproduction scripts for Figures 1, 3–9, 11, and 12 are located in the `LightDSA/AE/figure*` directory.
-- Reproduction script for Figure 13 is located in the `dsa_redis/AE/figure13` directory.
+- Reproduction scripts for Figures 1, 3–9, 12, 13, and 15 are located in the `LightDSA/AE/figure*` directory.
+- Reproduction script for Figure 14 is located in the `dsa_redis/AE/figure13` directory.
 - Reproduction scripts for ATC structure exploration are located in the `LightDSA/AE/ATCexplore` directory.
 
 Note: Some numbered figures are not based on experiments and do not have corresponding scripts.
